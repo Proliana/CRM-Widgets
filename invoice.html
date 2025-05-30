@@ -7,29 +7,26 @@
 </head>
 <body>
   <template>
-        <div class="invoice">
+    <div class="invoice">
         <div class="header">
             <h1>Invoice</h1>
             <p>Invoice #: ${Reference}</p>
             <p>Date: ${formatDate(Date)}</p>
+            <div class="logo">
+                <img src="./leone-logo.png" alt="Leone LLC">
+            </div>
         </div>
         <div class="details">
             <div>
                 <h2>From:</h2>
                 <p>
-                  Proliana<br>
-                  229 rue Saint Honoré<br>
-                  75001 Paris<br>
-                  Email: contact@proliana.com
+                  ${Sender_Address.replaceAll("\n", "<br>")}
                 </p>
             </div>
             <div>
                 <h2>To:</h2>
                 <p> 
-                  Wuye utramodern market fati Shop<br>
-                  381, Abubakar<br>
-                  Federal Capital Territory, Nigeria<br>
-                  Email: kokomglogistics@gmail.com
+                  ${Recipent_Address.replaceAll("\n", "<br>")}
                 </p>
             </div>
         </div>
@@ -43,20 +40,20 @@
             <tbody>
                 <tr>
                     <td>Total Sells</td>
-                    <td>${currency(Total, Country, Currency)}</td>
+                    <td class="currency">${currency(Total, Country, Currency)}</td>
                 </tr>
                 <tr>
                     <td>${Orders.length} Deliveries (${currency(Delivery_Unit_Price, Country, Currency)}/each)</td>
-                    <td>${currency(Total_Delivery, Country, Currency)}</td>
+                    <td class="currency">${currency(Total_Delivery, Country, Currency)}</td>
                 </tr>
                 <tr>
                     <td>Total Due</td>
-                    <td>${currency(Total_Due, Country, Currency)}</td>
+                    <td class="currency">${currency(Total_Due, Country, Currency)}</td>
                 </tr>
             </tbody>
         </table>
         <div class="total">
-            <p>Total: ${currency(Total_Due, Country, Currency)}</p>
+            <p class="currency">Total: ${currency(Total_Due, Country, Currency)}</p>
         </div>
     </div>
   </template>
@@ -68,6 +65,17 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 20px;
+      width: 21cm;
+      height: 29.7cm;
+  }
+  .logo {
+    position: absolute;
+    top: 1cm;
+    left: 1cm;
+  }
+  .logo img {
+    width: 150px;
+    height: 150px;
   }
   .invoice {
       max-width: 800px;
@@ -79,6 +87,7 @@
   .header {
       text-align: center;
       margin-bottom: 20px;
+      height: 150px;
   }
   .header h1 {
       margin: 0;
@@ -127,6 +136,9 @@
       text-align: right;
       font-size: 18px;
       font-weight: bold;
+  }
+  .currency {
+    text-align: right;
   }
 </style>
 
